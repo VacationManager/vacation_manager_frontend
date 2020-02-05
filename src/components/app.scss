@@ -12,4 +12,341 @@ body {
         min-height: 100vh;
         margin: 0 50px;
     }
+
+    .accordion {
+        margin-top: 10px;
+        border-bottom: 1px solid transparent;
+        transition: border 200ms ease-in-out 150ms, background-color 100ms ease, margin-bottom 200ms linear, border-radius 200ms, box-shadow 200ms;
+        will-change: border, background-color, margin-bottom;
+        margin: 0 20px;
+    }
+    
+    .accordion:not(.accordion--wrapped) {
+        border-bottom-color: #b7b7b7
+    }
+    
+    .accordion:hover {
+        background-color: #262626
+    }
+    
+    .accordion--disabled {
+        opacity: 0.6
+    }
+    
+    .accordion--trigger {
+        pointer-events: all !important;
+        cursor: pointer !important
+    }
+    
+    .accordion__head,.accordion__item {
+        cursor: pointer;
+        pointer-events: all;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        transition: height 300ms;
+        will-change: height;
+        display: flex;
+        height: 32px;
+        align-items: center;
+        position: relative;
+        background-color: transparent
+    }
+    
+    .accordion__head .accordion__head__title,.accordion__item .accordion__head__title {
+        flex: 1;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 10px;
+        transition: font-size 300ms, font-weight 300ms, -webkit-transform 300ms;
+        transition: font-size 300ms, transform 300ms, font-weight 300ms;
+        transition: font-size 300ms, transform 300ms, font-weight 300ms, -webkit-transform 300ms;
+        will-change: font-size, font-weight;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .accordion__head .accordion__head__icon,.accordion__item .accordion__head__icon {
+        color: #b7b7b7;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: -webkit-transform 250ms ease-in-out;
+        transition: transform 250ms ease-in-out;
+        transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+        will-change: transform
+    }
+    
+    .accordion__head .accordion__head__icon i,.accordion__item .accordion__head__icon i {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    
+    .accordion__head .accordion__head__icon i:before,.accordion__item .accordion__head__icon i:before {
+        vertical-align: middle
+    }
+    
+    .accordion__head .accordion__head__right,.accordion__item .accordion__head__right {
+        margin-right: 5px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center
+    }
+    
+    .accordion__head .accordion__head__right .right--search,.accordion__item .accordion__head__right .right--search {
+        position: absolute;
+        right: 0;
+        transition: opacity 0.25s ease;
+        will-change: opacity
+    }
+    
+    .accordion__head .accordion__head__right__search,.accordion__item .accordion__head__right__search {
+        transition: opacity 200ms ease, width 200ms ease, -webkit-transform 200ms ease;
+        transition: transform 200ms ease, opacity 200ms ease, width 200ms ease;
+        transition: transform 200ms ease, opacity 200ms ease, width 200ms ease, -webkit-transform 200ms ease;
+        will-change: transfrom, opacity, width;
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%);
+        opacity: 0
+    }
+    
+    .accordion__head .accordion__head__right__search--active,.accordion__item .accordion__head__right__search--active {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+    
+    .accordion__head .accordion__head__right__search .input,.accordion__item .accordion__head__right__search .input {
+        line-height: 1
+    }
+    
+    .accordion--fixed .accordion__head {
+        color: white;
+        cursor: default
+    }
+    
+    .accordion__body {
+        overflow: hidden;
+        position: relative;
+        height: auto !important;
+        max-height: 0;
+        transition: position 300ms ease-in-out;
+        will-change: position
+    }
+    
+    .accordion__intro {
+        padding: 0 9px 6px
+    }
+    
+    .accordion__content {
+        padding: 0 9px 9px 10px
+    }
+    
+    .accordion__item {
+        cursor: default;
+        padding: 8px 9px;
+        min-height: 38px;
+        height: inherit;
+        border-top: 1px solid #777
+    }
+    
+    .accordion__item:before {
+        display: none
+    }
+    
+    .accordion.accordion--wrapped .accordion__item {
+        padding-left: 30px
+    }
+    
+    .accordion--wrapped {
+        margin: 0;
+        border-top: 1px solid #777
+    }
+    
+    .accordion--wrapped>.accordion__head {
+        height: 40px
+    }
+    
+    .accordion--wrapped>.accordion__body {
+        clear: both
+    }
+    
+    .accordion--wrapped .accordion__content {
+        padding: 0 0 18px 17px;
+        margin: 0 9px
+    }
+    
+    .accordion.accordion--wrapped .accordion--wrapped {
+        padding-left: 14px
+    }
+    
+    .accordion__body>.accordion__content+.accordion__item,.accordion__body>.accordion__intro+.accordion__item,.accordion__body>.accordion__content+*>.accordion__item,.accordion__body>.accordion__intro+*>.accordion__item,.accordion__body>.accordion__item:first-child,.accordion__body>*:first-child>.accordion__item,.accordion__body>.accordion__content+.accordion--wrapped,.accordion__body>.accordion__intro+.accordion--wrapped,.accordion__body>.accordion__content+*>.accordion--wrapped,.accordion__body>.accordion__intro+*>.accordion--wrapped,.accordion__body>.accordion--wrapped:first-child,.accordion__body>*:first-child>.accordion--wrapped {
+        border-top: none
+    }
+    
+    .accordion--open.accordion:not(.accordion--wrapped) {
+        margin-bottom: 30px;
+        background-color: #262626;
+        border-color: transparent
+    }
+    
+    .accordion--open.accordion:not(.accordion--wrapped)>.accordion__head {
+        height: 38px
+    }
+    
+    .accordion--open.accordion:not(.accordion--wrapped)>.accordion__head .accordion__head__title {
+        font-size: 25px;
+    }
+    
+    .accordion--open.accordion.accordion--wrapped>.accordion__head>.accordion__head__title {
+        font-weight: 700
+    }
+    
+    .accordion--open>.accordion__head .accordion__head__icon:not(.accordion__head__icon--no-rotate) {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg)
+    }
+    
+    .accordion--open>.accordion__body {
+        max-height: 9999px !important;
+        margin-bottom: 30px;
+    }
+    
+    .accordion--fixed.accordion:not(.accordion--open):hover {
+        background-color: transparent
+    }
+    
+    .accordion--fixed>.accordion__head {
+        padding-left: 9px
+    }
+    
+    .accordion--fixed>.accordion__head:hover {
+        cursor: default
+    }
+    
+    .accordion--fixed>.accordion__head:before {
+        display: none
+    }
+    
+    .accordion.accordion--flex>.accordion__head,.accordion.accordion--flex>.accordion__body>.accordion__item {
+        display: flex;
+        align-items: center
+    }
+    
+    .accordion.accordion--flex>.accordion__head .__head__right,.accordion.accordion--flex>.accordion__body>.accordion__item .__head__right {
+        float: none;
+        margin-left: auto
+    }
+    
+    .accordion.accordion--flex>.accordion__head .ellipsis,.accordion.accordion--flex>.accordion__body>.accordion__item .ellipsis {
+        margin-right: 10px
+    }
+    
+    .animation__accordion--close,.accordion__body {
+        transition: max-height 0.5s cubic-bezier(0, 1, 0, 1) -0.1s;
+        will-change: max-height
+    }
+    
+    .animation__accordion--open,.accordion--open>.accordion__body {
+        transition: max-height 0.5s cubic-bezier(0.5, 0, 1, 0) 0s;
+        will-change: max-height
+    }
+    
+    .chayns--mobile .accordion:not(.accordion--open):hover,.chayns--app .accordion:not(.accordion--open):hover {
+        background-color: transparent
+    }
+    
+    .chayns-browser--firefox .accordion__head,.chayns-browser--firefox .accordion__item {
+        white-space: normal
+    }
+    
+    .accordion__head__right {
+        overflow: hidden
+    }
+    
+    .accordion__head__right .right--background-appear,.accordion__head__right .right--background-enter,.accordion__head__right .right--background-exit {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        transition: opacity 400ms ease;
+        will-change: opacity
+    }
+    
+    .accordion__head__right .right--background-enter,.accordion__head__right .right--background-appear {
+        right: 5px;
+        opacity: 0
+    }
+    
+    .accordion__head__right .right--background-enter-active,.accordion__head__right .right--background-appear-active {
+        opacity: 1
+    }
+    
+    .accordion__head__right .right--background-exit {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        opacity: 1
+    }
+    
+    .accordion__head__right .right--background-exit-active {
+        opacity: 0
+    }
+    
+    .accordion__head__right .right--foreground-appear,.accordion__head__right .right--foreground-enter,.accordion__head__right .right--foreground-exit {
+        transition: opacity 400ms ease, -webkit-transform 400ms;
+        transition: transform 400ms, opacity 400ms ease;
+        transition: transform 400ms, opacity 400ms ease, -webkit-transform 400ms;
+        will-change: opacity
+    }
+    
+    .accordion__head__right .right--foreground-enter,.accordion__head__right .right--foreground-appear {
+        opacity: 0;
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%)
+    }
+    
+    .accordion__head__right .right--foreground-enter-active,.accordion__head__right .right--foreground-appear-active {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+    
+    .accordion__head__right .right--foreground-exit {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%)
+    }
+    
+    .accordion__head__right .right--foreground-exit-active {
+        opacity: 0;
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%)
+    }
+    
+}
+
+h1, h2 {
+    margin: 0;
+    color: white;
+}
+
+p {
+    margin: 0;
+    color: white;
 }

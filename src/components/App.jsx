@@ -1,43 +1,54 @@
 import { hot } from 'react-hot-loader/root';
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 import Headline from './headline/Headline';
+import LoginContainer from './login/LoginContainer';
 
 import './app.scss';
+import UserViewContainer from './userView/UserViewContainer';
 
 
-class App extends PureComponent {
-    render() {
-        return (
-            <div
-                className="main_wrapper"
-            >
-                <Headline/>
+const App = ({
+    userToken,
+}) => {
+    console.log(userToken);
+    return (
+        <div
+            className="main_wrapper"
+        >
+            <Headline/>
 
-                {/* User logged in */}
+            {userToken
+                ? (
+                    <UserViewContainer/>
+                )
+                : (
+                    <LoginContainer/>
+                )}
 
-                    {/* Admin */}
+            {/* User logged in */}
 
-                        {/* User verwalten */}
+            {/* Admin */}
 
-                        {/* Abteilung verwalten */}
+            {/* User verwalten */}
 
-                {/* !Admin */}
+            {/* Abteilung verwalten */}
 
-                    {/* Antrag erstellen */}
+            {/* !Admin */}
 
-                    {/* History */}
+            {/* Antrag erstellen */}
 
-                    {/* Calender with other user */}
+            {/* History */}
 
-                    {/* Manager? */}
+            {/* Calender with other user */}
 
-                        {/* offene Anträge */}
+            {/* Manager? */}
 
-                {/* User not logged in */}
-            </div>
-        );
-    }
-}
+            {/* offene Anträge */}
+
+            {/* User not logged in */}
+        </div>
+    );
+};
 
 export default hot(App);

@@ -1,0 +1,16 @@
+.select_time_wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .time_text {
+        margin-left: 50px;
+    }
+    .select_time {
+        margin-right: 50px;
+        display: flex;
+
+        .divider {
+            margin: 0 15px;
+        }
+    }
+}
