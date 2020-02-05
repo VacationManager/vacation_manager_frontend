@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
-import { Accordion, Button } from 'chayns-components';
-
+import { Accordion, Button, TextArea } from 'chayns-components';
+import Test from '../Test';
 import './createVacation.scss';
+import { createVacationDateHelper } from '../../../utils/dateHelper';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 const CreateVacation = () => {
-    const [showSelectDate, setShowSelectDate] = useState(false);
+    // const [startDate, setStartDate] = useState(createVacationDateHelper(true));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [endDate, setEndDate] = useState(createVacationDateHelper(false));
+    const [annoation, setAnnotation] = useState('');
+
+    const handleDateChange = date => {
+        setSelectedDate(date);
+      };
+
     return (
         <Accordion
             head="Antrag erstellen"
@@ -21,27 +36,49 @@ const CreateVacation = () => {
                 <div
                     className="select_time"
                 >
-                    <Button
+                    {/* <Button
                         className="time_from"
-                        onClick={() => {
-                            setShowSelectDate(!showSelectDate);
-                        }}
+                        onClick={() => {}}
                     >
-                            Test
-                    </Button>
+                        {startDate}
+                    </Button> */}
+     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+     <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="Date picker dialog"
+          format="MM/dd/yyyy"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+         </MuiPickersUtilsProvider>
                     <p
                         className="divider"
                     >
-                            -
+                        -
                     </p>
                     <Button
-                        onClick={() => {
-                            setShowSelectDate(!showSelectDate);
-                        }}
+                        onClick={() => {}}
                     >
-                            Test
+                        {endDate}
                     </Button>
                 </div>
+            </div>
+
+            <TextArea
+                onChange={setAnnotation}
+                value={annoation}
+                placeholder="Anmerkungen"
+                className="annotation_textarea"
+            />
+    
+            <div
+                className="button_wrapper"
+            >
+                <Button>Abschicken</Button>
             </div>
         </Accordion>
     );

@@ -10,7 +10,7 @@ const History = () => {
             className="history_accordion"
             dataGroup="1"
         >
-            <></>
+            <p>Hier findest Du alle Deine Urlaubsanträge.</p>
         </Accordion>
     );
 };

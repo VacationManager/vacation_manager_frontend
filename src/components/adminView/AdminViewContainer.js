@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import UserView from './UserView';
+import AdminView from './AdminView';
 
 // const mapStateToProps = (state) => {
 //     return {
-//         userToken: getUserToken(state),
+//         user: getUser(state),
 //     };
 // };
 
@@ -11,4 +11,4 @@ import UserView from './UserView';
 //     getComment: (id, folderId) => dispatch(getComment(id, folderId)),
 // });
 
-export default connect(null, null)(UserView);
+export default connect(null, null)(AdminView);

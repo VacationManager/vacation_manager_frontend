@@ -6,19 +6,25 @@ import LoginContainer from './login/LoginContainer';
 
 import './app.scss';
 import UserViewContainer from './userView/UserViewContainer';
-
+import AdminViewContainer from './adminView/AdminViewContainer';
 
 const App = ({
-    userToken,
+    user,
 }) => {
-    console.log(userToken);
+    console.log(user);
+    
     return (
         <div
             className="main_wrapper"
         >
             <Headline/>
 
-            {userToken
+            {user.isAdmin
+                && (
+                    <AdminViewContainer/>
+                )}
+
+            {user && user.accessToken
                 ? (
                     <UserViewContainer/>
                 )

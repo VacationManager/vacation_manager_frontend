@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import App from './App';
-import { getUserToken } from '../redux-modules/user/selectors';
+import { getUser } from '../redux-modules/user/selectors';
 
 const mapStateToProps = (state) => {
     return {
-        userToken: getUserToken(state),
+        user: getUser(state),
     };
 };
 
