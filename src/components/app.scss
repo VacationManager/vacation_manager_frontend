@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+.tapp {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #272727;
+
+    .main_wrapper {
+        background: black;
+        min-height: 100vh;
+        margin: 0 50px;
+    }
+}
