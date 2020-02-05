@@ -18,6 +18,10 @@
     }
 }
 
+.button_wrapper {
+    margin-top: 10px;
+    text-align: center;
+}
 .annotation_textarea {
     margin-top: 10px;
     width: 91% !important;
@@ -40,4 +44,28 @@
 textarea.input {
     resize: none;
     overflow-x: hidden
+}
+
+.MuiPickersDay-daySelected { 
+    background-color: black !important;
+}
+
+.MuiPickersToolbar-toolbar {
+    background-color: black !important;
+}
+
+.MuiButton-textPrimary {
+    color: black !important
+}
+
+.MuiInputBase-input {
+    color: white !important;
+}
+
+.MuiIconButton-label {
+    color: white !important;
+}
+
+.MuiInput-underline:before {
+    border-bottom: 1px solid white !important;
 }

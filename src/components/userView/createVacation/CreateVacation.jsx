@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Accordion, Button, TextArea } from 'chayns-components';
-import Test from '../Test';
 import './createVacation.scss';
 import { createVacationDateHelper } from '../../../utils/dateHelper';
 import DateFnsUtils from '@date-io/date-fns';
@@ -9,16 +8,13 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { de } from 'date-fns/locale';
 
 const CreateVacation = () => {
-    // const [startDate, setStartDate] = useState(createVacationDateHelper(true));
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [endDate, setEndDate] = useState(createVacationDateHelper(false));
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     const [annoation, setAnnotation] = useState('');
 
-    const handleDateChange = date => {
-        setSelectedDate(date);
-      };
 
     return (
         <Accordion
@@ -36,44 +32,57 @@ const CreateVacation = () => {
                 <div
                     className="select_time"
                 >
-                    {/* <Button
-                        className="time_from"
-                        onClick={() => {}}
-                    >
-                        {startDate}
-                    </Button> */}
-     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-     <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Date picker dialog"
-          format="MM/dd/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-         </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={de}>
+                <KeyboardDatePicker
+                    margin="normal"
+                    id="date-picker-dialog"
+                    format="dd.MM.yy"
+                    value={startDate}
+                    onChange={(date) => {
+                        if (date > endDate) {
+                            setEndDate(date)
+                        }
+                        setStartDate(date);
+                    }}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                    minDate={new Date()}
+                />
+            </MuiPickersUtilsProvider>
                     <p
                         className="divider"
                     >
                         -
                     </p>
-                    <Button
-                        onClick={() => {}}
-                    >
-                        {endDate}
-                    </Button>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={de}>
+                <KeyboardDatePicker
+                    margin="normal"
+                    id="date-picker-dialog"
+                    format="dd.MM.yy"
+                    value={endDate}
+                    onChange={setEndDate}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                    minDate={startDate}
+                />
+            </MuiPickersUtilsProvider>
                 </div>
             </div>
 
-            <TextArea
-                onChange={setAnnotation}
-                value={annoation}
-                placeholder="Anmerkungen"
-                className="annotation_textarea"
-            />
+            <div
+                style={{
+                    textAlign: 'center',
+                }}
+            >
+                <TextArea
+                    onChange={setAnnotation}
+                    value={annoation}
+                    placeholder="Anmerkungen"
+                    className="annotation_textarea"
+                />
+            </div>
     
             <div
                 className="button_wrapper"
