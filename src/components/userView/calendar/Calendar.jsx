@@ -1,18 +1,18 @@
 import React from 'react';
 import { Accordion } from 'chayns-components';
+import './calendar.scss';
 
-import './history.scss';
-
-const History = () => {
+const Calendar = () => {
     return (
         <Accordion
-            head="Deine Anträge"
-            className="history_accordion"
+            head="Kalender"
+            defaultOpened
             dataGroup="1"
+            className="calendar_accordion"
         >
             <></>
         </Accordion>
     );
 };
 
-export default History;
+export default Calendar;

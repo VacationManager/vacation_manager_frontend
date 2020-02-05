@@ -8,6 +8,7 @@ const CreateVacation = () => {
     return (
         <Accordion
             head="Antrag erstellen"
+            dataGroup="1"
         >
             <div
                 className="select_time_wrapper"
