@@ -5,14 +5,14 @@ import React from 'react';
 import configureStore from './utils/store';
 
 import App from './components/App';
-import { setTodos } from './redux-modules/test/actions';
+import { getUserData } from './redux-modules/user/actions';
 
 const store = configureStore();
 
 
 const init = () => {
     const tappElement = document.querySelector('.tapp');
-    store.dispatch(setTodos([]));
+    // store.dispatch(getUserData());
     ReactDOM.render(
         <Provider store={store}>
             <App/>
