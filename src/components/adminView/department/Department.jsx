@@ -9,6 +9,7 @@ const Department = ({
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [mailAddress, setMailAddress] = useState('');
+    const [vacationDays, setVacationDays] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
 
     const createUser = async () => {
@@ -68,6 +69,17 @@ const Department = ({
                                         value={password}
                                         onChange={setPassword}
                                     />
+                                    <Input
+                                        placeholder="Urlaubstage"
+                                        value={vacationDays}
+                                        onChange={(value) => {
+                                            if (value.match(/^\d+$/)) {
+                                                setVacationDays(parseInt(value));
+                                            } else if (value === '') {
+                                                setVacationDays(value);
+                                            }
+                                        }}
+                                    />
 
                                     <div
                                         style={{
@@ -95,6 +107,7 @@ const Department = ({
                                                     || lastName.trim().length === 0
                                                     || password.trim().length === 0
                                                     || mailAddress.trim().length === 0
+                                                    || typeof vacationDays !== 'number'
                                                 }
                                             onClick={createUser}
                                         >

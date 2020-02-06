@@ -64,12 +64,12 @@ textarea.input {
     color: white !important;
 }
 
-.MuiIconButton-root {
-    color: white !important;
-    .MuiIconButton-label {
-        color: white !important;
-    }
-}
+// .MuiIconButton-root {
+//     color: white !important;
+//     .MuiIconButton-label {
+//         color: white !important;
+//     }
+// }
 
 
 .MuiInput-underline:before {
@@ -83,6 +83,18 @@ textarea.input {
     }
 }
 
-.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day {
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day::not(.MuiPickersDay-daySelected) {
     color: black !important;
+}
+
+.MuiIconButton-label {
+    & svg {
+        color: white !important;
+    }
+}
+
+.MuiPickersCalendarHeader-iconButton {
+    & svg {
+        color: black !important;
+    }
 }

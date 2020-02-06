@@ -7,7 +7,7 @@ export default (baseState = {}, action) => produce(baseState, (draftState) => {
             draftState.departments = action.value;
             break;
         case CREATED_DEPARTMENT:
-            draftState.departments = draftState.departments.push(action.value);
+           draftState.departments.push(action.value);
         default:
             break;
     }

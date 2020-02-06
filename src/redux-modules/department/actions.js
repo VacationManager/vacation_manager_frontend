@@ -35,10 +35,11 @@ export const createDepartment = (name) => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
     
     const response = await fetch(
-        `${SERVER_URL}/department`, {
+        `${SERVER_URL}department`, {
             method: 'POST',
             headers: {
                 'Authorization': `bearer ${userToken}`,
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 departmentName: name,
@@ -47,6 +48,6 @@ export const createDepartment = (name) => async (dispatch, getState) => {
         
     if (response.status === 200) {
         const result = await response.json();
-        dispatch(addDepartment(result));
+        dispatch(addDepartment({ ...result, departmentName: name }));
     }
 };
