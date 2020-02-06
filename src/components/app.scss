@@ -13,6 +13,10 @@ p {
     font-size: 1.1em;
 }
 
+.chayns--desktop:not(.chayns--net_runtime):not(.chayns--parent), .chayns--desktop.chayns--net_runtime:not(.chayns--parent), .chayns--desktop.chayns--parent:not(.chayns--net_runtime) {
+    overflow: auto;
+}
+
 .tapp {
     min-height: 100vh;
     width: 100%;

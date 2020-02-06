@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Accordion, Button, Input } from 'chayns-components';
-import Department from './department/Department';
+import Department from './departments/Departments';
 
 import './adminView.scss';
 
 const AdminView = ({
     departments,
     createDepartment,
+    fetchCreateUser,
 }) => {
     const [name, setName] = useState('');
 
@@ -25,6 +26,7 @@ const AdminView = ({
         >
             <Department
                 departments={departments}
+                fetchCreateUser={fetchCreateUser}
             />
             <Accordion
                 isWrapped

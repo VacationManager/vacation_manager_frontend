@@ -119,8 +119,7 @@ const Calendar = ({
                                     <div
                                         className="names_wrapper"
                                     >
-                                        {/* <h2>{d.departmentName}</h2> */}
-                                        {d.users.map((user) => (
+                                        {d && d.users && d.users.map((user) => (
                                             <div
                                                 className="calendar__navigator no_select"
                                                 style={{
@@ -146,7 +145,7 @@ const Calendar = ({
                                                         const weekDay = currentDay.getDay();
                                                         const weekend = weekDay === 5 || weekDay === 6;
                                                         
-                                                        const findDay = userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
+                                                        const findDay = userVacations && userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
                                                         
                                                         let color = '#262626';
                                                         if (weekend) {
