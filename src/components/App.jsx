@@ -13,9 +13,7 @@ const App = ({
     getDepartment,
 }) => {
     useEffect(() => {
-        if (user.isAdmin) {
-            getDepartment();
-        }
+        getDepartment();
     }, []);
     
     return (

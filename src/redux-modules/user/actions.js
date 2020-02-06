@@ -8,7 +8,7 @@ export const setUserData = (value) => ({
 
 export const getUserData = (userToken) => async (dispatch) => {
     const response = await fetch(
-        `${SERVER_URL}/user`, {
+        `${SERVER_URL}user`, {
             headers: {
                 'Authorization': `bearer ${userToken}`,
             }

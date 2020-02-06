@@ -10,12 +10,36 @@ import {
 } from '@material-ui/pickers';
 import { de } from 'date-fns/locale';
 import { addDays } from 'date-fns';
+import { SERVER_URL } from '../../../constants/server_url';
 
-const CreateVacation = () => {
+const CreateVacation = ({
+    user,
+}) => {
+    console.log(user);
+    
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [annoation, setAnnotation] = useState('');
 
+
+    const sendVacation = async () => {
+        const response = await fetch(
+            `${SERVER_URL}vacation`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `bearer ${user.accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    startTime: startDate,
+                    endTime: endDate,
+                }),
+            });
+        if (response.status === 200) {
+            // const result = await response.json();
+            // dispatch(setDepartment(result));
+        }
+    };
 
     return (
         <Accordion
@@ -28,7 +52,7 @@ const CreateVacation = () => {
                 <p
                     className="time_text"
                 >
-                        Zeitraum
+                    Zeitraum
                 </p>
                 <div
                     className="select_time"
@@ -88,7 +112,9 @@ const CreateVacation = () => {
             <div
                 className="button_wrapper"
             >
-                <Button>Abschicken</Button>
+                <Button
+                    onClick={sendVacation}
+                >Abschicken</Button>
             </div>
         </Accordion>
     );

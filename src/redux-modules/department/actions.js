@@ -12,9 +12,10 @@ export const getDepartment = () => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
     
     const response = await fetch(
-        `${SERVER_URL}/department`, {
+        `${SERVER_URL}department`, {
             headers: {
                 'Authorization': `bearer ${userToken}`,
+                'Content-Type': 'application/json',
             }
         });
         

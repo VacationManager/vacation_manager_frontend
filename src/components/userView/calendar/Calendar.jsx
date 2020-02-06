@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Accordion } from 'chayns-components';
 import './calendar.scss';
 import { selectedPeriodDateHelper } from '../../../utils/dateHelper';
-import { addDays, format } from 'date-fns';
+import { addDays, format, isSameDay } from 'date-fns';
 import { de } from 'date-fns/locale';
 
-const Calendar = () => {
+const Calendar = ({
+    departments,
+}) => {
     const [selectedPeriod, setSelectedPeriod] = useState(selectedPeriodDateHelper());
+    const [width, setWidth] = useState(window.innerWidth);
+
+    window.addEventListener('resize', ({ target }) => {
+        setWidth(target.innerWidth);
+    });
+
     const getDay = (dayIndex) => {
         switch (dayIndex) {
             case 0:
@@ -43,12 +51,15 @@ const Calendar = () => {
                 >
                     <div className="calendar__navigator no_select">
                         <div className="calendar__navigator_wrapper">
-                            <i
-                                className="fas fa-chevron-left calendar__navigator_icon"
+                            <div
                                 onClick={() => {
                                     setSelectedPeriod(addDays(selectedPeriod, -7));
                                 }}
-                            />
+                            >
+                                <i
+                                    className="fas fa-chevron-left calendar__navigator_icon"
+                                />
+                            </div>
                             <div
                                 style={{
                                     display: 'flex',
@@ -65,16 +76,21 @@ const Calendar = () => {
                                         marginRight: '5px',
                                     }}
                                 >-</div>
-                                <div>{format(addDays(selectedPeriod, 7), 'dd.MM.yyyy', { locale: de })}</div>
+                                <div>{format(addDays(selectedPeriod, 6), 'dd.MM.yyyy', { locale: de })}</div>
                             </div>
-                            <i
-                                className="fas fa-chevron-right calendar__navigator_icon"
+                            <div
                                 onClick={() => {
                                     setSelectedPeriod(addDays(selectedPeriod, 7))
                                 }}
-                            />
+                            >
+                                <i
+                                    className="fas fa-chevron-right calendar__navigator_icon"
+                                />
+                            </div>
                         </div>
-                        <div className="calendar__navigator_days">
+                        <div
+                            className="calendar__navigator_days"
+                        >
                             <div className="calendar__navigator_days_table">
                                 {[0, 1, 2, 3, 4, 5, 6].map((i) => (
                                     <div
@@ -92,6 +108,71 @@ const Calendar = () => {
                 <div
                     className="content"
                 >
+
+                    {departments && departments.length > 0
+                    && (
+                        <div
+                            className="user_wrapper"
+                        >
+                            {departments.map((d) => {
+                                return (
+                                    <div
+                                        className="names_wrapper"
+                                    >
+                                        {/* <h2>{d.departmentName}</h2> */}
+                                        {d.users.map((user) => (
+                                            <div
+                                                className="calendar__navigator no_select"
+                                                style={{
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '211px',
+                                                        fontSize: '1.2em',
+                                                    }}
+                                                >{`${user.firstName} ${user.lastName}`}</div>
+                                                <div
+                                                    className="calendar__navigator_days"
+                                                    style={{
+                                                        marginRight: width / 30,
+                                                        height: 'unset',
+                                                    }}
+                                                >
+                                                    {[0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                                        const userVacations = user.confirmedVacationSlots;
+                                                        const currentDay = addDays(selectedPeriod, i);
+                                                        const weekDay = currentDay.getDay();
+                                                        const weekend = weekDay === 5 || weekDay === 6;
+                                                        
+                                                        const findDay = userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
+                                                        
+                                                        let color = '#262626';
+                                                        if (weekend) {
+                                                            color = 'black';
+                                                        } else if (findDay) {
+                                                            color = 'green';
+                                                        }
+                                                        
+                                                        return (
+                                                            <div
+                                                                className="calendar__navigator_days_item"
+                                                            >
+                                                                <svg width="40" height="40">
+                                                                    <rect width="40" height="40" fill={color} />
+                                                                </svg>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                                })}
+                        </div>
+                    )}
 
                 </div>
             </div>

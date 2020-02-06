@@ -11,10 +11,12 @@
 
             .calendar__navigator {
                 display: flex;
+                align-items: center;
 
                 .calendar__navigator_wrapper {
                     display: flex;
                     margin-left: 50px;
+                    align-items: center;
                     .calendar__navigator_icon {
                         display: inline-block;
                         cursor: pointer;
@@ -36,7 +38,6 @@
                         border-spacing: 1px;
 
                         .calendar__navigator_days_item {
-                            width: 80px;
                             margin-right: 10px;
                         }
                     }
@@ -48,4 +49,32 @@
     div {
         color: white;
     }
+}
+
+.user_wrapper {
+    padding-top: 10px;
+    margin-left: 50px;
+
+    .names_wrapper {
+        margin-bottom: 5px;
+    }
+
+    .days_wrapper {
+        display: flex;
+        margin-left: 50px;
+        .day {
+            margin-right: 10px;
+            display: inline-block;
+            flex-grow: 1;
+            width: 20px;
+            border-top: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 85%;
+        }
+    }
+}
+
+.calendar__navigator_days_item {
+    cursor: unset !important;
 }
