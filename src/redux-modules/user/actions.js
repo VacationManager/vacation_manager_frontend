@@ -1,10 +1,17 @@
 import { USER_DATA, USER_TOKEN } from './types';
 import { SERVER_URL } from '../../constants/server_url';
 import { getUser } from './selectors';
+import { getDepartment } from '../department/actions';
 
 export const setUserData = (value) => ({
     type: USER_DATA,
     value,
+});
+
+export const LOGOUT = 'LOGOUT';
+
+export const logout = () => ({
+    type: LOGOUT,
 });
 
 export const getUserData = (userToken) => async (dispatch) => {
@@ -50,6 +57,8 @@ export const sendLogin = (email, password) => async (dispatch) => {
         const result = await response.json();
         document.cookie = `vacation_manager=${result.accessToken}; expires=${result.expirationDate}`;
         dispatch(setUserData(result));
+        dispatch(getDepartment());
+        dispatch(getUserData(result.accessToken));
     }
 };
 

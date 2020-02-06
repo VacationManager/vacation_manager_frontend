@@ -11,16 +11,20 @@ import {
 import { de } from 'date-fns/locale';
 import { addDays } from 'date-fns';
 import { SERVER_URL } from '../../../constants/server_url';
+import { parseISO, addHours } from 'date-fns/esm';
 
 const CreateVacation = ({
     user,
 }) => {
-    console.log(user);
-
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(addDays(new Date(), 1));
+    const calcStartDate = new Date();
+    calcStartDate.setHours(1);
+    calcStartDate.setMinutes(0);
+    calcStartDate.setSeconds(0);
+    calcStartDate.setMilliseconds(0);
+    const [startDate, setStartDate] = useState(calcStartDate);
+    const [endDate, setEndDate] = useState(addDays(addHours(calcStartDate, 12), 1));
     const [annoation, setAnnotation] = useState('');
-
+    
 
     const sendVacation = async () => {
         const response = await fetch(
@@ -33,9 +37,11 @@ const CreateVacation = ({
             body: JSON.stringify({
                 startTime: startDate,
                 endTime: endDate,
+                annoation,
             }),
         });
         if (response.status === 200) {
+            setAnnotation('');
             // const result = await response.json();
             // dispatch(setDepartment(result));
         }
@@ -70,7 +76,7 @@ const CreateVacation = ({
                                 value={startDate}
                                 onChange={(date) => {
                                     if (date > endDate) {
-                                        setEndDate(date)
+                                        setEndDate(addHours(date, 12));
                                     }
                                     setStartDate(date);
                                 }}

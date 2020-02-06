@@ -7,55 +7,40 @@ import LoginContainer from './login/LoginContainer';
 import './app.scss';
 import UserViewContainer from './userView/UserViewContainer';
 import AdminViewContainer from './adminView/AdminViewContainer';
+import DepartmentAdministration from '../components/userView/departmentAdministration/DepartmentAdministration';
 
 const App = ({
     user,
     getDepartment,
+    logout,
 }) => {
     useEffect(() => {
         getDepartment();
     }, []);
-    
+
     return (
         <div
             className="main_wrapper"
         >
-            <Headline/>
+            <Headline loggedIn={user && user.accessToken} logout={logout} />
 
             {user.isAdmin
                 && (
-                    <AdminViewContainer/>
+                    <AdminViewContainer />
                 )}
 
+            {user.isManager
+                && (
+                    <DepartmentAdministration />
+                )
+            }
             {user && user.accessToken
                 ? (
-                    <UserViewContainer/>
+                    <UserViewContainer />
                 )
                 : (
-                    <LoginContainer/>
+                    <LoginContainer />
                 )}
-
-            {/* User logged in */}
-
-            {/* Admin */}
-
-            {/* User verwalten */}
-
-            {/* Abteilung verwalten */}
-
-            {/* !Admin */}
-
-            {/* Antrag erstellen */}
-
-            {/* History */}
-
-            {/* Calender with other user */}
-
-            {/* Manager? */}
-
-            {/* offene Anträge */}
-
-            {/* User not logged in */}
         </div>
     );
 };

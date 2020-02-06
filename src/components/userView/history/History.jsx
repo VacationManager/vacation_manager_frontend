@@ -25,17 +25,23 @@ const History = ({
                     
                     if (isSameDay(parseISO(vaca.startTime), parseISO(vaca.endTime))) {
                         return (
-                            <div>
-                                {startDate}
+                            <div
+                                className="wrapper"
+                            >
+                                <div>{startDate}</div>
+                                {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
                             </div>
                         )
                     }
 
                     const endDate = format(parseISO(vaca.endTime), 'dd. MMMM. yyyy', { locale: de } );
                     return (
-                        <div>
-                            {startDate} - {endDate}
-                        </div>
+                        <div
+                        className="wrapper"
+                    >
+                        <div>{startDate} - {endDate}</div>
+                        {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
+                    </div>
                     )
                 })}
          </div>

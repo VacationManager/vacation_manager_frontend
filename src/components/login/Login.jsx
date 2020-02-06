@@ -18,7 +18,7 @@ const Login = ({
         >
             <h2>Login</h2>
             <Input
-                className="login_input"
+                className="email_input"
                 placeholder="eMail"
                 onChange={setEmail}
                 value={email}
