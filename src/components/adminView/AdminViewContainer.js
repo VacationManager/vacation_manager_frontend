@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 import AdminView from './AdminView';
+import { createDepartment } from '../../redux-modules/department/actions';
 
-// const mapStateToProps = (state) => {
-//     return {
-//         user: getUser(state),
-//     };
-// };
+const mapStateToProps = (state) => {
+    return {
+        departments: state.department && state.department.departments,
+    };
+};
 
-// const mapDispatchToProps = (dispatch) => ({
-//     getComment: (id, folderId) => dispatch(getComment(id, folderId)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+    createDepartment: (name) => dispatch(createDepartment(name)),
+});
 
-export default connect(null, null)(AdminView);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminView);

@@ -9,10 +9,11 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import { de } from 'date-fns/locale';
+import { addDays } from 'date-fns';
 
 const CreateVacation = () => {
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(addDays(new Date(), 1));
     const [annoation, setAnnotation] = useState('');
 
 

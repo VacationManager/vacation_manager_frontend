@@ -28,7 +28,6 @@ const Calendar = () => {
         }
     };
 
-    console.log(selectedPeriod);
     return (
         <Accordion
             head="Kalender"
@@ -47,7 +46,6 @@ const Calendar = () => {
                             <i
                                 className="fas fa-chevron-left calendar__navigator_icon"
                                 onClick={() => {
-                                    console.log('click');
                                     setSelectedPeriod(addDays(selectedPeriod, -7));
                                 }}
                             />

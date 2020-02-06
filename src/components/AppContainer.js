@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import App from './App';
 import { getUser } from '../redux-modules/user/selectors';
+import { getDepartment } from '../redux-modules/department/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,8 +9,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//     getComment: (id, folderId) => dispatch(getComment(id, folderId)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+    getDepartment: () => dispatch(getDepartment()),
+});
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

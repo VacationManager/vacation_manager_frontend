@@ -16,7 +16,7 @@ const init = async () => {
 
     if (userToken) {
         store.dispatch(setUserData({ accessToken: userToken }));
-        store.dispatch(getUserData(userToken));
+        await store.dispatch(getUserData(userToken));
     }
 
     ReactDOM.render(

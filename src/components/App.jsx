@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Headline from './headline/Headline';
 import LoginContainer from './login/LoginContainer';
@@ -10,8 +10,13 @@ import AdminViewContainer from './adminView/AdminViewContainer';
 
 const App = ({
     user,
+    getDepartment,
 }) => {
-    console.log(user);
+    useEffect(() => {
+        if (user.isAdmin) {
+            getDepartment();
+        }
+    }, []);
     
     return (
         <div

@@ -1,6 +1,7 @@
 .select_time_wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .time_text {
         margin-left: 50px;
@@ -8,6 +9,7 @@
     .select_time {
         margin-right: 50px;
         display: flex;
+        align-items: center;
 
         .divider {
             margin: 0 15px;
@@ -62,10 +64,25 @@ textarea.input {
     color: white !important;
 }
 
-.MuiIconButton-label {
+.MuiIconButton-root {
     color: white !important;
+    .MuiIconButton-label {
+        color: white !important;
+    }
 }
+
 
 .MuiInput-underline:before {
     border-bottom: 1px solid white !important;
+}
+
+.MuiPickersDay-dayDisabled { 
+    color: black !important;
+    .MuiIconButton-label {
+        color: black !important;
+    }
+}
+
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day {
+    color: black !important;
 }
