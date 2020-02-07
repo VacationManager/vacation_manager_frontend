@@ -27,3 +27,29 @@ export const getPendingVacations = () => async (dispatch, getState) => {
         dispatch(setDepartmentManager(result));
     }
 };
+
+export const SET_VACATION_REQUEST_STATE = 'SET_VACATION_REQUEST_STATE';
+
+export const setVacationRequestState = (value) => ({
+    type: SET_VACATION_REQUEST_STATE,
+    value,
+});
+
+export const handleVacationRequest = (value) => async (dispatch, getState) => {
+    const userToken = getUser(getState()).accessToken;
+
+    const response = await fetch(`${SERVER_URL}vacation`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(value)
+    });
+    
+    if (response.status === 200) {
+        dispatch(setVacationRequestState(value));
+        return true;
+    }
+    return false;
+};

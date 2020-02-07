@@ -1,5 +1,19 @@
-.button_wrapper {
-    display: flex;
-    text-align: center;
-    margin-left: 25vw;
+
+.vacation_wrapper {
+    margin-top: 15px;
+
+    .button_wrapper {
+        text-align: center;
+    }
+    .vacation_request {
+        margin-bottom: 25px;
+    
+        .request_text {
+            text-align: center;
+        }
+    }
+    
+    div, p {
+        color: white;
+    }
 }

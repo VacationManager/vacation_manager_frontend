@@ -16,6 +16,7 @@ const App = ({
     departments,
     getPendingVacations,
     pendingVacations,
+    handleVacationRequestState,
 }) => {
     useEffect(() => {
         getDepartment();
@@ -38,6 +39,7 @@ const App = ({
                         manageDepartment={departments && departments.find((g) => g.id === user.departmentId)}
                         getPendingVacations={getPendingVacations}
                         pendingVacations={pendingVacations}
+                        handleVacationRequestState={handleVacationRequestState}
                     />
                 )}
             {user && user.accessToken
