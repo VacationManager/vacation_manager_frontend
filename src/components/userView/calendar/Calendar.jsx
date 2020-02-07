@@ -117,14 +117,17 @@ const Calendar = ({
                             {departments.map((d) => {
                                 return (
                                     <div
+                                        key={d.id}
                                         className="names_wrapper"
                                     >
                                         {d && d.users && d.users.map((user) => (
                                             <div
+                                                key={user.id}
                                                 className="calendar__navigator no_select"
                                                 style={{
                                                     alignItems: 'center',
                                                 }}
+                                                key={user.id}
                                             >
                                                 <div
                                                     style={{
@@ -156,6 +159,7 @@ const Calendar = ({
                                                         
                                                         return (
                                                             <div
+                                                                key={i}
                                                                 className="calendar__navigator_days_item"
                                                             >
                                                                 <svg width="40" height="40">

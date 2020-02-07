@@ -56,7 +56,7 @@ const CreateVacation = ({
                 className="accordion__content"
             >
                 <p>Hier kannst du einen neuen Urlaubsantrag erstellen, dieser muss von deinem Teamleiter bestätigt werden.</p>
-                <p>Du hast dises Jahr noch {user.daysLeft} Tage übrig.</p>
+                <p>Du hast dieses Jahr noch {user.daysLeft} Tage übrig.</p>
                 <div
                     className="select_time_wrapper"
                 >

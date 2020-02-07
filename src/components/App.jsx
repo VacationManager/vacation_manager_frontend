@@ -13,11 +13,14 @@ const App = ({
     user,
     getDepartment,
     logout,
+    departments,
+    getPendingVacations,
+    pendingVacations,
 }) => {
     useEffect(() => {
         getDepartment();
     }, []);
-
+    
     return (
         <div
             className="main_wrapper"
@@ -31,7 +34,11 @@ const App = ({
 
             {user.isManager
                 && (
-                    <DepartmentAdministration />
+                    <DepartmentAdministration
+                        manageDepartment={departments && departments.find((g) => g.id === user.departmentId)}
+                        getPendingVacations={getPendingVacations}
+                        pendingVacations={pendingVacations}
+                    />
                 )
             }
             {user && user.accessToken

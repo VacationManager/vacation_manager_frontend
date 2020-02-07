@@ -15,6 +15,11 @@ const UserView = () => {
             <HistoryContainer/>
 
             <CalendarContainer/>
+            <div
+                style={{
+                    height: '20px'
+                }}
+            />
         </div>
     );
 };

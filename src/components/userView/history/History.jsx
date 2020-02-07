@@ -9,7 +9,6 @@ import { parseISO } from 'date-fns/esm';
 const History = ({
     vacations,
 }) => {
-    console.log(vacations);
     return (
         <Accordion
             head="Deine Anträge"
@@ -21,11 +20,12 @@ const History = ({
             >
                 <p>Hier findest Du alle Deine Urlaubsanträge.</p>
                 {vacations && vacations.map((vaca) => {
-                    const startDate = format(parseISO(vaca.startTime), 'dd. MMMM', { locale: de } );
-                    
+                    const startDate = format(parseISO(vaca.startTime), 'dd. MMMM', { locale: de });
+
                     if (isSameDay(parseISO(vaca.startTime), parseISO(vaca.endTime))) {
                         return (
                             <div
+                                key={vaca.startTime}
                                 className="wrapper"
                             >
                                 <div>{startDate}</div>
@@ -34,17 +34,18 @@ const History = ({
                         )
                     }
 
-                    const endDate = format(parseISO(vaca.endTime), 'dd. MMMM. yyyy', { locale: de } );
+                    const endDate = format(parseISO(vaca.endTime), 'dd. MMMM. yyyy', { locale: de });
                     return (
                         <div
-                        className="wrapper"
-                    >
-                        <div>{startDate} - {endDate}</div>
-                        {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
-                    </div>
+                            className="wrapper"
+                            key={vaca.startTime}
+                        >
+                            <div>{startDate} - {endDate}</div>
+                            {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
+                        </div>
                     )
                 })}
-         </div>
+            </div>
         </Accordion>
     );
 };

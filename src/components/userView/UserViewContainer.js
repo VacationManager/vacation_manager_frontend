@@ -7,8 +7,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//     getComment: (id, folderId) => dispatch(getComment(id, folderId)),
-// });
-
 export default connect(mapStateToProps, null)(UserView);

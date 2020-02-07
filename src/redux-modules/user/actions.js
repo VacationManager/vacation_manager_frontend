@@ -59,7 +59,9 @@ export const sendLogin = (email, password) => async (dispatch) => {
         dispatch(setUserData(result));
         dispatch(getDepartment());
         dispatch(getUserData(result.accessToken));
+        return true;
     }
+    return false;
 };
 
 export const CREATED_USER = 'CREATED_USER';

@@ -13,7 +13,11 @@ const Departments = ({
                 && (
                     departments.map((d) => {
                         return (
-                            <Department d={d} fetchCreateUser={fetchCreateUser}/>
+                            <Department
+                                d={d}
+                                fetchCreateUser={fetchCreateUser}
+                                key={d.id}
+                            />
                         )
                     })
                 )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion, List, ListItem, Input, Button, Checkbox, ContextMenu } from 'chayns-components';
-import User from './User';
+import UserContainer from './user/UserContainer';
 
 const Department = ({
     fetchCreateUser,
@@ -48,7 +48,10 @@ const Department = ({
                     className="my_list"
                 >
                     {d.users.map((user) => (
-                        <User user={user}/>
+                        <UserContainer
+                            user={user}
+                            key={user.id}
+                        />
                     ))}
                 </List>
             )}
