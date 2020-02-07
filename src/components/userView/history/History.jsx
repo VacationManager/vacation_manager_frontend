@@ -17,7 +17,7 @@ const History = ({
         <div className="accordion__content">
             <p>Hier findest Du alle Deine Urlaubsanträge.</p>
             <div className="list">
-                {vacations && vacations.map((vaca) => {
+                {vacations ? vacations.map((vaca) => {
                     const startDate = format(parseISO(vaca.startTime), 'dd. MMMM', { locale: de });
 
                     if (isSameDay(parseISO(vaca.startTime), parseISO(vaca.endTime))) {
@@ -47,7 +47,9 @@ const History = ({
                             {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
                         </div>
                     );
-                })}
+                }): (
+                    <p>Du hast noch keine Anträge gestellt.</p>
+                )}
             </div>
         </div>
     </Accordion>
