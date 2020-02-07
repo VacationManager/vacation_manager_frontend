@@ -3,11 +3,9 @@ import AdminView from './AdminView';
 import { createDepartment } from '../../redux-modules/department/actions';
 import { fetchCreateUser } from '../../redux-modules/user/actions';
 
-const mapStateToProps = (state) => {
-    return {
-        departments: state.department && state.department.departments,
-    };
-};
+const mapStateToProps = (state) => ({
+    departments: state.department && state.department.departments,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     createDepartment: (name) => dispatch(createDepartment(name)),

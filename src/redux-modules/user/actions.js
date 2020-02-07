@@ -15,12 +15,11 @@ export const logout = () => ({
 });
 
 export const getUserData = (userToken) => async (dispatch) => {
-    const responseVacation = await fetch(
-        `${SERVER_URL}vacation`, {
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-            }
-        });
+    const responseVacation = await fetch(`${SERVER_URL}vacation`, {
+        headers: {
+            Authorization: `bearer ${userToken}`,
+        },
+    });
 
     let vacations = null;
     if (responseVacation.status === 200) {
@@ -28,16 +27,15 @@ export const getUserData = (userToken) => async (dispatch) => {
         vacations = result;
     }
 
-    const response = await fetch(
-        `${SERVER_URL}user`, {
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-            }
-        });
-    
+    const response = await fetch(`${SERVER_URL}user`, {
+        headers: {
+            Authorization: `bearer ${userToken}`,
+        },
+    });
+
     if (response.status === 200) {
         const result = await response.json();
-        
+
         dispatch(setUserData({ ...result, vacations }));
     }
 };
@@ -77,7 +75,7 @@ export const fetchCreateUser = (value) => async (dispatch, getState) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `bearer ${userToken}`,
+            Authorization: `bearer ${userToken}`,
         },
         body: JSON.stringify(value),
     });

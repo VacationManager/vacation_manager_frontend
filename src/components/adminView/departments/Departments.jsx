@@ -6,23 +6,19 @@ import './departments.scss';
 const Departments = ({
     departments,
     fetchCreateUser,
-}) => {
-    return (
-        <>
-            {departments && departments.length > 0
+}) => (
+    <>
+        {departments && departments.length > 0
                 && (
-                    departments.map((d) => {
-                        return (
-                            <Department
-                                d={d}
-                                fetchCreateUser={fetchCreateUser}
-                                key={d.id}
-                            />
-                        )
-                    })
+                    departments.map((d) => (
+                        <Department
+                            d={d}
+                            fetchCreateUser={fetchCreateUser}
+                            key={d.id}
+                        />
+                    ))
                 )}
-        </>
-    )
-};
+    </>
+);
 
 export default Departments;

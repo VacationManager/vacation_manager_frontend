@@ -5,23 +5,21 @@ import './userView.scss';
 import HistoryContainer from './history/HistoryContainer';
 import CalendarContainer from './calendar/CalendarContainer';
 
-const UserView = () => {
-    return (
+const UserView = () => (
+    <div
+        className="userview_wrapper"
+    >
+        <CreateVacationContainer/>
+
+        <HistoryContainer/>
+
+        <CalendarContainer/>
         <div
-            className="userview_wrapper"
-        >
-            <CreateVacationContainer/>
-
-            <HistoryContainer/>
-
-            <CalendarContainer/>
-            <div
-                style={{
-                    height: '20px'
-                }}
-            />
-        </div>
-    );
-};
+            style={{
+                height: '20px',
+            }}
+        />
+    </div>
+);
 
 export default UserView;

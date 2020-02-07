@@ -8,8 +8,8 @@ export default (baseState = {}, action) => produce(baseState, (draftState) => {
             draftState.departments = action.value;
             break;
         case CREATED_DEPARTMENT:
-           draftState.departments.push(action.value);
-           break;
+            draftState.departments.push(action.value);
+            break;
         case CREATED_USER:
             const findDepartment = draftState.departments.findIndex((d) => d.id === action.value.departmentId);
             if (findDepartment >= 0) {
@@ -22,10 +22,9 @@ export default (baseState = {}, action) => produce(baseState, (draftState) => {
                     d.users = d.users.filter((user) => user.id !== action.value);
                 }
                 return d;
-            })
+            });
             break;
         case UPDATE_USER:
-            console.log(action.value);
             draftState.departments.map((d) => {
                 const updatedUserIndex = d.users && d.users.findIndex((user) => user.id === action.value.id);
                 if (updatedUserIndex >= 0) {
@@ -37,7 +36,7 @@ export default (baseState = {}, action) => produce(baseState, (draftState) => {
                     }
                 }
                 return d;
-            })
+            });
             break;
         default:
             break;

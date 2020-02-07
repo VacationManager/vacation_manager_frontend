@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion, Button, TextArea } from 'chayns-components';
 import './createVacation.scss';
-import { createVacationDateHelper } from '../../../utils/dateHelper';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
@@ -10,8 +9,9 @@ import {
 } from '@material-ui/pickers';
 import { de } from 'date-fns/locale';
 import { addDays } from 'date-fns';
-import { SERVER_URL } from '../../../constants/server_url';
 import { parseISO, addHours } from 'date-fns/esm';
+import { SERVER_URL } from '../../../constants/server_url';
+import { createVacationDateHelper } from '../../../utils/dateHelper';
 
 const CreateVacation = ({
     user,
@@ -24,14 +24,13 @@ const CreateVacation = ({
     const [startDate, setStartDate] = useState(calcStartDate);
     const [endDate, setEndDate] = useState(addDays(addHours(calcStartDate, 12), 1));
     const [annoation, setAnnotation] = useState('');
-    
+
 
     const sendVacation = async () => {
-        const response = await fetch(
-            `${SERVER_URL}vacation`, {
+        const response = await fetch(`${SERVER_URL}vacation`, {
             method: 'POST',
             headers: {
-                'Authorization': `bearer ${user.accessToken}`,
+                Authorization: `bearer ${user.accessToken}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -55,16 +54,11 @@ const CreateVacation = ({
             <div
                 className="accordion__content"
             >
-                <p>Hier kannst du einen neuen Urlaubsantrag erstellen, dieser muss von deinem Teamleiter bestätigt werden.</p>
-                <p>Du hast dieses Jahr noch {user.daysLeft} Tage übrig.</p>
+                <p>Hier kannst du einen neuen Urlaubsantrag erstellen, dieser muss von deinem Teamleiter bestätigt werden. Du hast dieses Jahr noch {user.daysLeft && user.daysLeft.toString().replace('.', ',')} Tage übrig.</p>
                 <div
                     className="select_time_wrapper"
                 >
-                    <p
-                        className="time_text"
-                    >
-                        Zeitraum
-                </p>
+                    <p>Zeitraum</p>
                     <div
                         className="select_time"
                     >
@@ -90,7 +84,7 @@ const CreateVacation = ({
                             className="divider"
                         >
                             -
-                    </p>
+                        </p>
                         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={de}>
                             <KeyboardDatePicker
                                 margin="normal"
@@ -107,11 +101,7 @@ const CreateVacation = ({
                     </div>
                 </div>
 
-                <div
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
+                <div>
                     <TextArea
                         onChange={setAnnotation}
                         value={annoation}
@@ -125,7 +115,9 @@ const CreateVacation = ({
                 >
                     <Button
                         onClick={sendVacation}
-                    >Abschicken</Button>
+                    >
+                        Abschicken
+                    </Button>
                 </div>
             </div>
         </Accordion>

@@ -55,7 +55,7 @@ const AdminView = ({
                 </div>
             </Accordion>
         </Accordion>
-    )
+    );
 };
 
 export default AdminView;

@@ -1,9 +1,9 @@
 import {
-    SERVER_URL
+    SERVER_URL,
 } from '../../constants/server_url';
 import {
-    getUser
-} from "../user/selectors";
+    getUser,
+} from '../user/selectors';
 
 export const SET_DEPARTMENT = 'SET_DEPARTMENT';
 
@@ -15,13 +15,12 @@ export const setDepartment = (value) => ({
 export const getDepartment = () => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
 
-    const response = await fetch(
-        `${SERVER_URL}department`, {
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-                'Content-Type': 'application/json',
-            }
-        });
+    const response = await fetch(`${SERVER_URL}department`, {
+        headers: {
+            Authorization: `bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        },
+    });
 
     if (response.status === 200) {
         const result = await response.json();
@@ -39,23 +38,22 @@ export const addDepartment = (value) => ({
 export const createDepartment = (name) => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
 
-    const response = await fetch(
-        `${SERVER_URL}department`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                departmentName: name,
-            }),
-        });
+    const response = await fetch(`${SERVER_URL}department`, {
+        method: 'POST',
+        headers: {
+            Authorization: `bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            departmentName: name,
+        }),
+    });
 
     if (response.status === 200) {
         const result = await response.json();
         dispatch(addDepartment({
             ...result,
-            departmentName: name
+            departmentName: name,
         }));
     }
 };
@@ -70,14 +68,13 @@ export const deletedUser = (value) => ({
 export const deleteUser = (id) => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
 
-    const response = await fetch(
-        `${SERVER_URL}user?id=${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-                'Content-Type': 'application/json',
-            },
-        });
+    const response = await fetch(`${SERVER_URL}user?id=${id}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        },
+    });
 
     if (response.status === 204) {
         dispatch(deletedUser(id));
@@ -94,15 +91,14 @@ export const updatedUser = (value) => ({
 export const updateUser = (value) => async (dispatch, getState) => {
     const userToken = getUser(getState()).accessToken;
 
-    const response = await fetch(
-        `${SERVER_URL}user`, {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `bearer ${userToken}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(value),
-        });
+    const response = await fetch(`${SERVER_URL}user`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: `bearer ${userToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(value),
+    });
 
     if (response.status === 204) {
         dispatch(updatedUser(value));

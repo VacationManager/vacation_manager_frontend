@@ -7,29 +7,36 @@ import LoginContainer from './login/LoginContainer';
 import './app.scss';
 import UserViewContainer from './userView/UserViewContainer';
 import AdminViewContainer from './adminView/AdminViewContainer';
-import DepartmentAdministration from '../components/userView/departmentAdministration/DepartmentAdministration';
+import DepartmentAdministration from './userView/departmentAdministration/DepartmentAdministration';
+import RegisterContainer from './register/RegisterContainer';
 
 const App = ({
     user,
+    config,
+    getConfig,
     getDepartment,
     logout,
     departments,
     getPendingVacations,
     pendingVacations,
+    handleVacationRequestState,
 }) => {
     useEffect(() => {
-        getDepartment();
+        if (user && user.accessToken) {
+            getDepartment();
+        }
+        getConfig();
     }, []);
     
     return (
         <div
             className="main_wrapper"
         >
-            <Headline loggedIn={user && user.accessToken} logout={logout} />
+            <Headline loggedIn={user && user.accessToken} logout={logout}/>
 
             {user.isAdmin
                 && (
-                    <AdminViewContainer />
+                    <AdminViewContainer/>
                 )}
 
             {user.isManager
@@ -38,16 +45,24 @@ const App = ({
                         manageDepartment={departments && departments.find((g) => g.id === user.departmentId)}
                         getPendingVacations={getPendingVacations}
                         pendingVacations={pendingVacations}
+                        handleVacationRequestState={handleVacationRequestState}
                     />
+                )}
+            {
+
+                (
+                    config && (
+                        // eslint-disable-next-line no-nested-ternary
+                        user && user.accessToken
+                            ? (
+                                <UserViewContainer/>
+                            )
+                            : (
+                                config.initialized ? <LoginContainer/> : <RegisterContainer/>
+                            )
+                    )
                 )
             }
-            {user && user.accessToken
-                ? (
-                    <UserViewContainer />
-                )
-                : (
-                    <LoginContainer />
-                )}
         </div>
     );
 };
