@@ -56,7 +56,7 @@ const Login = ({
                 className="login_button"
             >
                 <Button
-                    disabled={email.trim().length === 0 && password.trim().length === 0}
+                    disabled={email.trim().length === 0 || password.trim().length === 0}
                     onClick={login}
                 >
                     Anmelden
