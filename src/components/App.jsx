@@ -1,43 +1,55 @@
 import { hot } from 'react-hot-loader/root';
-import React, { PureComponent } from 'react';
+import React, { useEffect } from 'react';
 
 import Headline from './headline/Headline';
+import LoginContainer from './login/LoginContainer';
 
 import './app.scss';
+import UserViewContainer from './userView/UserViewContainer';
+import AdminViewContainer from './adminView/AdminViewContainer';
+import DepartmentAdministration from '../components/userView/departmentAdministration/DepartmentAdministration';
 
+const App = ({
+    user,
+    getDepartment,
+    logout,
+    departments,
+    getPendingVacations,
+    pendingVacations,
+}) => {
+    useEffect(() => {
+        getDepartment();
+    }, []);
+    
+    return (
+        <div
+            className="main_wrapper"
+        >
+            <Headline loggedIn={user && user.accessToken} logout={logout} />
 
-class App extends PureComponent {
-    render() {
-        return (
-            <div
-                className="main_wrapper"
-            >
-                <Headline/>
+            {user.isAdmin
+                && (
+                    <AdminViewContainer />
+                )}
 
-                {/* User logged in */}
-
-                    {/* Admin */}
-
-                        {/* User verwalten */}
-
-                        {/* Abteilung verwalten */}
-
-                {/* !Admin */}
-
-                    {/* Antrag erstellen */}
-
-                    {/* History */}
-
-                    {/* Calender with other user */}
-
-                    {/* Manager? */}
-
-                        {/* offene Anträge */}
-
-                {/* User not logged in */}
-            </div>
-        );
-    }
-}
+            {user.isManager
+                && (
+                    <DepartmentAdministration
+                        manageDepartment={departments && departments.find((g) => g.id === user.departmentId)}
+                        getPendingVacations={getPendingVacations}
+                        pendingVacations={pendingVacations}
+                    />
+                )
+            }
+            {user && user.accessToken
+                ? (
+                    <UserViewContainer />
+                )
+                : (
+                    <LoginContainer />
+                )}
+        </div>
+    );
+};
 
 export default hot(App);

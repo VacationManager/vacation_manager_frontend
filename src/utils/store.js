@@ -7,7 +7,7 @@ import rootReducer from '../redux-modules/root';
 export default () => {
     const middlewares = [thunk];
 
-    middlewares.push(createLogger({ collapsed: true }));
+    middlewares.push(createLogger());
 
     return createStore(
         rootReducer,

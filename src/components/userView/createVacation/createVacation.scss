@@ -1,0 +1,100 @@
+.select_time_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .time_text {
+        margin-left: 50px;
+    }
+    .select_time {
+        margin-right: 50px;
+        display: flex;
+        align-items: center;
+
+        .divider {
+            margin: 0 15px;
+        }
+    }
+    .button_wrapper {
+        text-align: center;
+    }
+}
+
+.button_wrapper {
+    margin-top: 10px;
+    text-align: center;
+}
+.annotation_textarea {
+    margin-top: 10px;
+    width: 91% !important;
+    height: 4em !important;
+}
+
+.input {
+    padding: 4px 8px;
+    font-weight: 300;
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-color: #676767;
+    border-radius: 0;
+    color: #e8e8e8;
+    cursor: text;
+    transition: border-color 0.4s
+}
+
+textarea.input {
+    resize: none;
+    overflow-x: hidden
+}
+
+.MuiPickersDay-daySelected { 
+    background-color: black !important;
+}
+
+.MuiPickersToolbar-toolbar {
+    background-color: black !important;
+}
+
+.MuiButton-textPrimary {
+    color: black !important
+}
+
+.MuiInputBase-input {
+    color: white !important;
+}
+
+// .MuiIconButton-root {
+//     color: white !important;
+//     .MuiIconButton-label {
+//         color: white !important;
+//     }
+// }
+
+
+.MuiInput-underline:before {
+    border-bottom: 1px solid white !important;
+}
+
+.MuiPickersDay-dayDisabled { 
+    color: black !important;
+    .MuiIconButton-label {
+        color: black !important;
+    }
+}
+
+.MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day::not(.MuiPickersDay-daySelected) {
+    color: black !important;
+}
+
+.MuiIconButton-label {
+    & svg {
+        color: white !important;
+    }
+}
+
+.MuiPickersCalendarHeader-iconButton {
+    & svg {
+        color: black !important;
+    }
+}
