@@ -9,11 +9,12 @@ import { parseISO } from 'date-fns/esm';
 const History = ({
     vacations,
 }) => (
-        <Accordion
-            head="Deine Anträge"
-            className="history_accordion"
-            dataGroup="1"
-        >
+    <Accordion
+        head="Deine Anträge"
+        className="history_accordion"
+        dataGroup="1"
+    >
+        <div className="accordion__content">
             <p>Hier findest Du alle Deine Urlaubsanträge.</p>
             <div className="list">
                 {vacations && vacations.map((vaca) => {
@@ -40,7 +41,6 @@ const History = ({
                             <div>
                                 {startDate}
                                 {' '}
-    -
                                 {' '}
                                 {endDate}
                             </div>
