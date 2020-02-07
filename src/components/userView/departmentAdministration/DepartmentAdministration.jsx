@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Accordion } from 'chayns-components';
+import { Accordion, Button } from 'chayns-components';
+import './departmentAdministration.scss';
 
 const DepartmentAdministration = ({
     manageDepartment,
@@ -21,9 +22,22 @@ const DepartmentAdministration = ({
                     {pendingVacations && pendingVacations.length > 0
                     && pendingVacations.map((vaca) => {
                         return (
-                            <p
+                            <div
                                 key={vaca.id}
-                            >{vaca.userId}</p>
+                            >
+                                {vaca.userId}
+
+                                <div
+                                    className="button_wrapper"
+                                >
+                                    <Button
+                                        style={{
+                                            marginRight: '5px',
+                                        }}
+                                    >Annehmen</Button>
+                                    <Button>Ablehnen</Button>
+                                </div>
+                            </div>
                         )
                     })}
                 </div>
