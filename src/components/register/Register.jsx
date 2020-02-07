@@ -61,7 +61,7 @@ const Register = ({
                 className="login_button"
             >
                 <Button
-                    disabled={email.trim().length === 0 && password.trim().length === 0}
+                    disabled={email.trim().length === 0 || password.trim().length === 0 || firstName.trim().length === 0 || lastName.trim().length === 0 || departmentName.trim().length === 0}
                     onClick={submit}
                 >
                     Registrieren
