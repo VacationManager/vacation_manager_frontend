@@ -46,7 +46,7 @@ const Login = ({
                             </div>
                             <div>
                                 <span>
-Falsche eMail Adresse oder Falsches Passwort.
+                                    Du hast eine falsche eMail Addresse oder ein falsches Passwort eingegeben.
                                 </span>
                             </div>
                         </div>
