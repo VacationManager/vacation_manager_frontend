@@ -141,7 +141,7 @@ const Calendar = ({
                                             <div
                                                 className="calendar__navigator_days"
                                                 style={{
-                                                    marginRight: width / 30,
+                                                    marginRight: width / 27,
                                                     height: 'unset',
                                                 }}
                                             >
