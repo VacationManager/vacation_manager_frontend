@@ -34,6 +34,10 @@ p {
         transition: border 200ms ease-in-out 150ms, background-color 100ms ease, margin-bottom 200ms linear, border-radius 200ms, box-shadow 200ms;
         will-change: border, background-color, margin-bottom;
         margin: 0 20px;
+
+        &.react-accordion.accordion--open{
+            background-color: #00000066 !important;
+        }
     }
 
     .accordion:not(.accordion--wrapped) {
