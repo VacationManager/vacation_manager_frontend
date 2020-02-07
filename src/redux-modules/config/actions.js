@@ -39,5 +39,6 @@ export const register = (data) => async (dispatch) => {
         dispatch(getDepartment());
         dispatch(getUserData(result.accessToken));
         dispatch(setConfig({ initialized: true }));
+        document.cookie = `vacation_manager=${result.accessToken}; expires=${result.expirationDate}`;
     }
 };
