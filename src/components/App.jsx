@@ -8,9 +8,12 @@ import './app.scss';
 import UserViewContainer from './userView/UserViewContainer';
 import AdminViewContainer from './adminView/AdminViewContainer';
 import DepartmentAdministration from './userView/departmentAdministration/DepartmentAdministration';
+import RegisterContainer from './register/RegisterContainer';
 
 const App = ({
     user,
+    config,
+    getConfig,
     getDepartment,
     logout,
     departments,
@@ -19,7 +22,11 @@ const App = ({
     handleVacationRequestState,
 }) => {
     useEffect(() => {
-        getDepartment();
+        if (user && user.accessToken) {
+            getDepartment();
+        } else {
+            getConfig();
+        }
     }, []);
 
     return (
@@ -42,13 +49,21 @@ const App = ({
                         handleVacationRequestState={handleVacationRequestState}
                     />
                 )}
-            {user && user.accessToken
-                ? (
-                    <UserViewContainer/>
+            {
+
+                (
+                    config && (
+                        // eslint-disable-next-line no-nested-ternary
+                        user && user.accessToken
+                            ? (
+                                <UserViewContainer/>
+                            )
+                            : (
+                                config.initialized ? <LoginContainer/> : <RegisterContainer/>
+                            )
+                    )
                 )
-                : (
-                    <LoginContainer/>
-                )}
+            }
         </div>
     );
 };

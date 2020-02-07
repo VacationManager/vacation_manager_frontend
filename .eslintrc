@@ -15,7 +15,7 @@
   "rules": {
     "function-paren-newline": ["error", "multiline"],
     "comma-dangle": ["error", "always-multiline"],
-    "arrow-parens": ["error", "always"],
+    // "arrow-parens": ["off", "always"],
     "no-param-reassign": ["error", {
       "props": true,
       "ignorePropertyModificationsFor": ["draftState"]
