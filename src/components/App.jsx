@@ -24,11 +24,10 @@ const App = ({
     useEffect(() => {
         if (user && user.accessToken) {
             getDepartment();
-        } else {
-            getConfig();
         }
+        getConfig();
     }, []);
-
+    
     return (
         <div
             className="main_wrapper"
