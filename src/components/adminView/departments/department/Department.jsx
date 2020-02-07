@@ -92,32 +92,35 @@ const Department = ({
                     }}
                 />
 
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <p>Administrator?</p>
-                    <Checkbox
-                        value={isAdmin}
-                        onChange={setIsAdmin}
-                    />
-                </div>
+                <div style={{ marginTop: '8px' }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            padding: '0px 8px 0px 8px'
+                        }}
+                    >
+                        <p>Administrator</p>
+                        <Checkbox
+                            value={isAdmin}
+                            onChange={setIsAdmin}
+                        />
+                    </div>
 
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <p>Teamleiter?</p>
-                    <Checkbox
-                        value={isManager}
-                        onChange={setIsManager}
-                    />
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            padding: '0px 8px 0px 8px'
+                        }}
+                    >
+                        <p>Teamleiter</p>
+                        <Checkbox
+                            value={isManager}
+                            onChange={setIsManager}
+                        />
+                    </div>
                 </div>
-
 
                 <div
                     style={{
