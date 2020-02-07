@@ -120,7 +120,6 @@ const Calendar = ({
                             {departments.map((d) => (
                                 <div
                                     key={d.id}
-                                    className="names_wrapper"
                                 >
                                     {d && d.users && d.users.map((user) => (
                                         <div
@@ -154,11 +153,11 @@ const Calendar = ({
 
                                                     const findDay = userVacations && userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
 
-                                                    let color = '#262626';
+                                                    let color = '#00000000';
                                                     if (weekend) {
-                                                        color = 'black';
+                                                        color = '#ffffff55';
                                                     } else if (findDay) {
-                                                        color = 'green';
+                                                        color = '#00ff0077';
                                                     }
 
                                                     return (
