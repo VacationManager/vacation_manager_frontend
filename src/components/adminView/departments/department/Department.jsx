@@ -35,7 +35,7 @@ const Department = ({
             setMailAddress('');
         }
     };
-
+    
     return (
         <Accordion
             head={d.departmentName}
@@ -132,6 +132,7 @@ const Department = ({
                             || password.trim().length === 0
                             || mailAddress.trim().length === 0
                             || typeof vacationDays !== 'number'
+                            || !mailAddress.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
                         }
                         onClick={createUser}
                     >
