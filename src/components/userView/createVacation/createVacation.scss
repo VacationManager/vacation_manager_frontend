@@ -2,12 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    .time_text {
-        margin-left: 50px;
-    }
+    
     .select_time {
-        margin-right: 50px;
         display: flex;
         align-items: center;
 
@@ -26,7 +22,7 @@
 }
 .annotation_textarea {
     margin-top: 10px;
-    width: 91% !important;
+    width: 100% !important;
     height: 4em !important;
 }
 

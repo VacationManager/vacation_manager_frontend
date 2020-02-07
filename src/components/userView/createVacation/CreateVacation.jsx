@@ -58,11 +58,7 @@ const CreateVacation = ({
                 <div
                     className="select_time_wrapper"
                 >
-                    <p
-                        className="time_text"
-                    >
-                        Zeitraum
-                    </p>
+                    <p>Zeitraum</p>
                     <div
                         className="select_time"
                     >
@@ -105,11 +101,7 @@ const CreateVacation = ({
                     </div>
                 </div>
 
-                <div
-                    style={{
-                        textAlign: 'center',
-                    }}
-                >
+                <div>
                     <TextArea
                         onChange={setAnnotation}
                         value={annoation}
