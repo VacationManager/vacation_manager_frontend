@@ -15,7 +15,6 @@ const User = ({
     };
 
     const updateUserAdmin = () => {
-        console.log('here');
         updateUser({
             id: user.id,
             isAdmin: !user.isAdmin,

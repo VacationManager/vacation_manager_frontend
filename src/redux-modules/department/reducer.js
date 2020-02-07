@@ -25,7 +25,6 @@ export default (baseState = {}, action) => produce(baseState, (draftState) => {
             });
             break;
         case UPDATE_USER:
-            console.log(action.value);
             draftState.departments.map((d) => {
                 const updatedUserIndex = d.users && d.users.findIndex((user) => user.id === action.value.id);
                 if (updatedUserIndex >= 0) {

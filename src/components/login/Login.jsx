@@ -17,9 +17,6 @@ const Login = ({
         }
     };
 
-    console.log(loginSucceed);
-
-
     return (
         <div
             className="login_view"
