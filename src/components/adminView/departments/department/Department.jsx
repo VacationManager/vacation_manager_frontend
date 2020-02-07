@@ -113,8 +113,8 @@ const Department = ({
                 >
                     <p>Teamleiter?</p>
                     <Checkbox
-                        value={isAdmin}
-                        onChange={setIsAdmin}
+                        value={isManager}
+                        onChange={setIsManager}
                     />
                 </div>
 

@@ -26,12 +26,14 @@ const DepartmentAdministration = ({
             <>
                 <Accordion
                     head={`${manageDepartment.departmentName} verwalten`}
+                    dataGroup="1"
                 >
                     <div
                         className="accordion__content vacation_wrapper"
                     >
+                        <p>Hier kannst Du die offenen Anträge deiner Abteilung verwalten.</p>
                         {pendingVacations && pendingVacations.length > 0
-                            && pendingVacations.map((vaca) => {
+                            ? pendingVacations.map((vaca) => {
                                 const {
                                     startTime,
                                     endTime,
@@ -88,7 +90,9 @@ const DepartmentAdministration = ({
                                         </div>
                                     </div>
                                 )
-                            })}
+                            }): (
+                                <p>Im Moment gibt es keine offenen Anträge.</p>
+                            )}
                     </div>
                 </Accordion>
             </>
