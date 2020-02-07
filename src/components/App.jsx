@@ -7,7 +7,7 @@ import LoginContainer from './login/LoginContainer';
 import './app.scss';
 import UserViewContainer from './userView/UserViewContainer';
 import AdminViewContainer from './adminView/AdminViewContainer';
-import DepartmentAdministration from '../components/userView/departmentAdministration/DepartmentAdministration';
+import DepartmentAdministration from './userView/departmentAdministration/DepartmentAdministration';
 
 const App = ({
     user,
@@ -20,16 +20,16 @@ const App = ({
     useEffect(() => {
         getDepartment();
     }, []);
-    
+
     return (
         <div
             className="main_wrapper"
         >
-            <Headline loggedIn={user && user.accessToken} logout={logout} />
+            <Headline loggedIn={user && user.accessToken} logout={logout}/>
 
             {user.isAdmin
                 && (
-                    <AdminViewContainer />
+                    <AdminViewContainer/>
                 )}
 
             {user.isManager
@@ -39,14 +39,13 @@ const App = ({
                         getPendingVacations={getPendingVacations}
                         pendingVacations={pendingVacations}
                     />
-                )
-            }
+                )}
             {user && user.accessToken
                 ? (
-                    <UserViewContainer />
+                    <UserViewContainer/>
                 )
                 : (
-                    <LoginContainer />
+                    <LoginContainer/>
                 )}
         </div>
     );

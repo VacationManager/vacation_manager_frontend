@@ -38,11 +38,11 @@ const Department = ({
 
     return (
         <Accordion
-        head={d.departmentName}
-        isWrapped
-        dataGroup="2"
-    >
-        {d.users && d.users.length > 0
+            head={d.departmentName}
+            isWrapped
+            dataGroup="2"
+        >
+            {d.users && d.users.length > 0
             && (
                 <List
                     className="my_list"
@@ -55,93 +55,93 @@ const Department = ({
                     ))}
                 </List>
             )}
-        <Accordion
-            head="Nutzer hinzufügen"
-            isWrapped
-            icon="ts-plus"
-        >
-            <Input
-                placeholder="Vorname"
-                value={firstName}
-                onChange={setFirstName}
-            />
-            <Input
-                placeholder="Name"
-                value={lastName}
-                onChange={setLastName}
-            />
-            <Input
-                placeholder="eMail Adresse"
-                value={mailAddress}
-                onChange={setMailAddress}
-            />
-            <Input
-                placeholder="Password"
-                value={password}
-                onChange={setPassword}
-            />
-            <Input
-                placeholder="Urlaubstage"
-                value={vacationDays}
-                onChange={(value) => {
-                    if (value.match(/^\d+$/)) {
-                        setVacationDays(parseInt(value));
-                    } else if (value === '') {
-                        setVacationDays(value);
-                    }
-                }}
-            />
-
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
+            <Accordion
+                head="Nutzer hinzufügen"
+                isWrapped
+                icon="ts-plus"
             >
-                <p>Administrator?</p>
-                <Checkbox
-                    value={isAdmin}
-                    onChange={setIsAdmin}
+                <Input
+                    placeholder="Vorname"
+                    value={firstName}
+                    onChange={setFirstName}
                 />
-            </div>
-
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >
-                <p>Teamleiter?</p>
-                <Checkbox
-                    value={isAdmin}
-                    onChange={setIsAdmin}
+                <Input
+                    placeholder="Name"
+                    value={lastName}
+                    onChange={setLastName}
                 />
-            </div>
-            
+                <Input
+                    placeholder="eMail Adresse"
+                    value={mailAddress}
+                    onChange={setMailAddress}
+                />
+                <Input
+                    placeholder="Password"
+                    value={password}
+                    onChange={setPassword}
+                />
+                <Input
+                    placeholder="Urlaubstage"
+                    value={vacationDays}
+                    onChange={(value) => {
+                        if (value.match(/^\d+$/)) {
+                            setVacationDays(parseInt(value));
+                        } else if (value === '') {
+                            setVacationDays(value);
+                        }
+                    }}
+                />
 
-            <div
-                style={{
-                    textAlign: 'center',
-                    paddingTop: '10px',
-                }}
-            >
-                <Button
-                    disabled={
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <p>Administrator?</p>
+                    <Checkbox
+                        value={isAdmin}
+                        onChange={setIsAdmin}
+                    />
+                </div>
+
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <p>Teamleiter?</p>
+                    <Checkbox
+                        value={isAdmin}
+                        onChange={setIsAdmin}
+                    />
+                </div>
+
+
+                <div
+                    style={{
+                        textAlign: 'center',
+                        paddingTop: '10px',
+                    }}
+                >
+                    <Button
+                        disabled={
                             firstName.trim().length === 0
                             || lastName.trim().length === 0
                             || password.trim().length === 0
                             || mailAddress.trim().length === 0
                             || typeof vacationDays !== 'number'
                         }
-                    onClick={createUser}
-                >
+                        onClick={createUser}
+                    >
                     Hinzufügen
-                </Button>
-            </div>
+                    </Button>
+                </div>
 
+            </Accordion>
         </Accordion>
-    </Accordion>
-    )
+    );
 };
 
 export default Department;

@@ -8,46 +8,50 @@ import { parseISO } from 'date-fns/esm';
 
 const History = ({
     vacations,
-}) => {
-    return (
-        <Accordion
-            head="Deine Anträge"
-            className="history_accordion"
-            dataGroup="1"
+}) => (
+    <Accordion
+        head="Deine Anträge"
+        className="history_accordion"
+        dataGroup="1"
+    >
+        <div
+            className="accordion__content"
         >
-            <div
-                className="accordion__content"
-            >
-                <p>Hier findest Du alle Deine Urlaubsanträge.</p>
-                {vacations && vacations.map((vaca) => {
-                    const startDate = format(parseISO(vaca.startTime), 'dd. MMMM', { locale: de });
+            <p>Hier findest Du alle Deine Urlaubsanträge.</p>
+            {vacations && vacations.map((vaca) => {
+                const startDate = format(parseISO(vaca.startTime), 'dd. MMMM', { locale: de });
 
-                    if (isSameDay(parseISO(vaca.startTime), parseISO(vaca.endTime))) {
-                        return (
-                            <div
-                                key={vaca.startTime}
-                                className="wrapper"
-                            >
-                                <div>{startDate}</div>
-                                {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
-                            </div>
-                        )
-                    }
-
-                    const endDate = format(parseISO(vaca.endTime), 'dd. MMMM. yyyy', { locale: de });
+                if (isSameDay(parseISO(vaca.startTime), parseISO(vaca.endTime))) {
                     return (
                         <div
-                            className="wrapper"
                             key={vaca.startTime}
+                            className="wrapper"
                         >
-                            <div>{startDate} - {endDate}</div>
+                            <div>{startDate}</div>
                             {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
                         </div>
-                    )
-                })}
-            </div>
-        </Accordion>
-    );
-};
+                    );
+                }
+
+                const endDate = format(parseISO(vaca.endTime), 'dd. MMMM. yyyy', { locale: de });
+                return (
+                    <div
+                        className="wrapper"
+                        key={vaca.startTime}
+                    >
+                        <div>
+                            {startDate}
+                            {' '}
+-
+                            {' '}
+                            {endDate}
+                        </div>
+                        {vaca.requestState === 0 ? 'Offen' : vaca.requestState === 1 ? 'Angenommen' : 'Abgelehnt'}
+                    </div>
+                );
+            })}
+        </div>
+    </Accordion>
+);
 
 export default History;

@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import Calendar from './Calendar';
 
-const mapStateToProps = (state) => {
-    return {
-        departments: state.department && state.department.departments,
-    };
-};
+const mapStateToProps = (state) => ({
+    departments: state.department && state.department.departments,
+});
 
 // const mapDispatchToProps = (dispatch) => ({
 //     getComment: (id, folderId) => dispatch(getComment(id, folderId)),

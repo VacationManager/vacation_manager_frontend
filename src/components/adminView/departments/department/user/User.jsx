@@ -10,7 +10,7 @@ const User = ({
     deleteUser,
     updateUser,
 }) => {
-    const deleteFunc = () => {  
+    const deleteFunc = () => {
         deleteUser(user.id);
     };
 
@@ -33,7 +33,7 @@ const User = ({
         <ListItem
             title={`${user.firstName} ${user.lastName}`}
             subtitle={user.mailAddress}
-            right={
+            right={(
                 <ContextMenu
                     items={[{
                         onClick: updateUserAdmin,
@@ -48,9 +48,10 @@ const User = ({
                         text: 'Löschen',
                         icon: faTrash,
                     }]}
-                />}
+                />
+            )}
         />
-    )
+    );
 };
 
 export default User;

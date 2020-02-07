@@ -5,13 +5,11 @@ import { getDepartment } from '../redux-modules/department/actions';
 import { logout } from '../redux-modules/user/actions';
 import { getPendingVacations } from '../redux-modules/departmentManager/actions';
 
-const mapStateToProps = (state) => {
-    return {
-        user: getUser(state),
-        departments: state.department.departments,
-        pendingVacations: state.departmentManager.departmentManager,
-    };
-};
+const mapStateToProps = (state) => ({
+    user: getUser(state),
+    departments: state.department.departments,
+    pendingVacations: state.departmentManager.departmentManager,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     getDepartment: () => dispatch(getDepartment()),

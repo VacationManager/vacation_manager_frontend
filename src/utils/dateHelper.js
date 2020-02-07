@@ -9,7 +9,7 @@ export const createVacationDateHelper = (isStartDate) => {
             date.setHours(0);
             date.setMinutes(0);
             date.setSeconds(0);
-            date = `${format(date, 'd. MMMM', { locale: de } )} vorm.`;
+            date = `${format(date, 'd. MMMM', { locale: de })} vorm.`;
         } else {
             date.setHours(12);
             date.setMinutes(0);
@@ -25,6 +25,4 @@ export const createVacationDateHelper = (isStartDate) => {
     return date;
 };
 
-export const selectedPeriodDateHelper = () => {
-    return startOfWeek(new Date());
-};
+export const selectedPeriodDateHelper = () => startOfWeek(new Date());

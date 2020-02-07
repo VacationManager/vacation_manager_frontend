@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Accordion } from 'chayns-components';
 import './calendar.scss';
-import { selectedPeriodDateHelper } from '../../../utils/dateHelper';
 import { addDays, format, isSameDay } from 'date-fns';
 import { de } from 'date-fns/locale';
+import { selectedPeriodDateHelper } from '../../../utils/dateHelper';
 
 const Calendar = ({
     departments,
@@ -18,19 +18,19 @@ const Calendar = ({
     const getDay = (dayIndex) => {
         switch (dayIndex) {
             case 0:
-                return 'Mo.'
+                return 'Mo.';
             case 1:
-                return 'Di.'
+                return 'Di.';
             case 2:
-                return 'Mi.'
+                return 'Mi.';
             case 3:
-                return 'Do.'
+                return 'Do.';
             case 4:
-                return 'Fr.'
+                return 'Fr.';
             case 5:
-                return 'Sa.'
+                return 'Sa.';
             case 6:
-                return 'So.'
+                return 'So.';
             default:
                 break;
         }
@@ -70,17 +70,20 @@ const Calendar = ({
                                         marginRight: '5px',
                                     }}
                                 >
-                                    {format(selectedPeriod, 'dd.MM', { locale: de })}</div>
+                                    {format(selectedPeriod, 'dd.MM', { locale: de })}
+                                </div>
                                 <div
                                     style={{
                                         marginRight: '5px',
                                     }}
-                                >-</div>
+                                >
+-
+                                </div>
                                 <div>{format(addDays(selectedPeriod, 6), 'dd.MM.yyyy', { locale: de })}</div>
                             </div>
                             <div
                                 onClick={() => {
-                                    setSelectedPeriod(addDays(selectedPeriod, 7))
+                                    setSelectedPeriod(addDays(selectedPeriod, 7));
                                 }}
                             >
                                 <i
@@ -114,66 +117,66 @@ const Calendar = ({
                         <div
                             className="user_wrapper"
                         >
-                            {departments.map((d) => {
-                                return (
-                                    <div
-                                        key={d.id}
-                                        className="names_wrapper"
-                                    >
-                                        {d && d.users && d.users.map((user) => (
+                            {departments.map((d) => (
+                                <div
+                                    key={d.id}
+                                    className="names_wrapper"
+                                >
+                                    {d && d.users && d.users.map((user) => (
+                                        <div
+                                            key={user.id}
+                                            className="calendar__navigator no_select"
+                                            style={{
+                                                alignItems: 'center',
+                                            }}
+                                            key={user.id}
+                                        >
                                             <div
-                                                key={user.id}
-                                                className="calendar__navigator no_select"
                                                 style={{
-                                                    alignItems: 'center',
+                                                    width: '211px',
+                                                    fontSize: '1.2em',
                                                 }}
-                                                key={user.id}
                                             >
-                                                <div
-                                                    style={{
-                                                        width: '211px',
-                                                        fontSize: '1.2em',
-                                                    }}
-                                                >{`${user.firstName} ${user.lastName}`}</div>
-                                                <div
-                                                    className="calendar__navigator_days"
-                                                    style={{
-                                                        marginRight: width / 30,
-                                                        height: 'unset',
-                                                    }}
-                                                >
-                                                    {[0, 1, 2, 3, 4, 5, 6].map((i) => {
-                                                        const userVacations = user.confirmedVacationSlots;
-                                                        const currentDay = addDays(selectedPeriod, i);
-                                                        const weekDay = currentDay.getDay();
-                                                        const weekend = weekDay === 5 || weekDay === 6;
-                                                        
-                                                        const findDay = userVacations && userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
-                                                        
-                                                        let color = '#262626';
-                                                        if (weekend) {
-                                                            color = 'black';
-                                                        } else if (findDay) {
-                                                            color = 'green';
-                                                        }
-                                                        
-                                                        return (
-                                                            <div
-                                                                key={i}
-                                                                className="calendar__navigator_days_item"
-                                                            >
-                                                                <svg width="40" height="40">
-                                                                    <rect width="40" height="40" fill={color} />
-                                                                </svg>
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </div>
+                                                {`${user.firstName} ${user.lastName}`}
                                             </div>
-                                        ))}
-                                    </div>
-                                )
-                                })}
+                                            <div
+                                                className="calendar__navigator_days"
+                                                style={{
+                                                    marginRight: width / 30,
+                                                    height: 'unset',
+                                                }}
+                                            >
+                                                {[0, 1, 2, 3, 4, 5, 6].map((i) => {
+                                                    const userVacations = user.confirmedVacationSlots;
+                                                    const currentDay = addDays(selectedPeriod, i);
+                                                    const weekDay = currentDay.getDay();
+                                                    const weekend = weekDay === 5 || weekDay === 6;
+
+                                                    const findDay = userVacations && userVacations.find((g) => isSameDay(new Date(g.date), currentDay));
+
+                                                    let color = '#262626';
+                                                    if (weekend) {
+                                                        color = 'black';
+                                                    } else if (findDay) {
+                                                        color = 'green';
+                                                    }
+
+                                                    return (
+                                                        <div
+                                                            key={i}
+                                                            className="calendar__navigator_days_item"
+                                                        >
+                                                            <svg width="40" height="40">
+                                                                <rect width="40" height="40" fill={color}/>
+                                                            </svg>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
                         </div>
                     )}
 
